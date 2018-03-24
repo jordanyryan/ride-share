@@ -5,6 +5,9 @@ module.exports = {
     res.send({test: 'test passed'})
   },
   create(req,res) {
-    const driver = new Driver({email: req.body.email});
+    const driverProps = req.body;
+
+    Driver.create(driverProps)
+      .then(driver => res.send(driver)); 
   }
 }

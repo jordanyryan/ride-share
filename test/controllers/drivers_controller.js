@@ -10,9 +10,9 @@ describe('Drivers controller', () => {
     Driver.count().then((count) => {
       request(app)
         .post('/api/drivers')
-        .send({email: 'test@test.com'})
+        .send({email: 'test12@test.com'})
         .end(() => {
-          Driver.count((newCount) => {
+          Driver.count().then((newCount) => {
             assert(count+1 === newCount);
             done();
           })
