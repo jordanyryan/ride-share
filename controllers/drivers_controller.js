@@ -18,5 +18,12 @@ module.exports = {
       .then(() => Driver.findById(driverId))
       .then(driver => res.send(driver))
       .catch(next);
+  },
+  delete(req,res,next) {
+    const driverId = req.params.driverId;
+
+    Driver.findByIdAndRemove(driverId)
+      .then((driver) => res.status(204).send(driver))
+      .catch(next);
   }
 }
