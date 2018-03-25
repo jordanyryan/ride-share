@@ -4,6 +4,7 @@ module.exports = {
   test(req,res) {
     res.send({test: 'test passed'})
   },
+
   create(req,res,next) {
     const driverProps = req.body;
 
@@ -11,6 +12,7 @@ module.exports = {
       .then(driver => res.send(driver))
       .catch(next);
   },
+
   edit(req,res,next) {
     const driverId = req.params.driverId;
     const driverProps = req.body;
@@ -19,6 +21,7 @@ module.exports = {
       .then(driver => res.send(driver))
       .catch(next);
   },
+
   delete(req,res,next) {
     const driverId = req.params.driverId;
 
