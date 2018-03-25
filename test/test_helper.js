@@ -1,17 +1,18 @@
 const mongoose = require('mongoose');
+
 before(done => {
-  mongoose.connect('mongodb://localhost/ride-share_test');
+  mongoose.connect('mongodb://localhost/ride-share_test')
   mongoose.connection
     .once('open', done)
-    .on('error', err => {
+    .on('error', err =>{
       console.warn('Warning', err);
     });
 });
 
 beforeEach(done => {
-  const {drivers} = mongoose.connection.collections;
+  const { drivers } = mongoose.connection.collections;
+  
   drivers.drop()
     .then(() => done())
     .catch(() => done());
-    
-})
+});

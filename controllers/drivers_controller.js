@@ -4,10 +4,19 @@ module.exports = {
   test(req,res) {
     res.send({test: 'test passed'})
   },
-  create(req,res) {
+  create(req,res,next) {
     const driverProps = req.body;
 
     Driver.create(driverProps)
-      .then(driver => res.send(driver)); 
+      .then(driver => res.send(driver))
+      .catch(next);
+  },
+  edit(req,res,next) {
+    const driverId = req.params.driverId;
+    const driverProps = req.body;
+    Driver.findByIdAndUpdate(driverId, driverProps)
+      .then(() => Driver.findById(driverId))
+      .then(driver => res.send(driver))
+      .catch(next);
   }
 }

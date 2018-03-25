@@ -12,4 +12,9 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 routes(app);
 
+app.use((err, req, res, next) => {
+  res.status(422).send({error: err.message});
+  next();
+});
+
 module.exports = app;
