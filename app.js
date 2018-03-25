@@ -4,7 +4,8 @@ const app = express();
 const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/ride-share');
+if (process.env.NODE_ENV !== "test") mongoose.connect('mongodb://localhost/ride-share');
+
 
 
 app.use(express.json())
